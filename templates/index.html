@@ -522,13 +522,13 @@ h2 {
             <h1>Agenda Virtual</h1>
             <p>Organiza tu tiempo y cumple tus objetivos</p>
 
-            <div id="pantallaPrincipalAuth">
+            <div id="pantallaPrincipalAuth" class="form-auth-oculto">
                 <h2 class="titulo-auth">¿Tienes cuenta?</h2>
                 <button type="button" id="irIngresar">Sí, tengo cuenta</button>
                 <button type="button" id="irCrearCuenta" class="boton-secundario">No tengo cuenta</button>
             </div>
 
-            <div id="pantallaIngreso" class="form-auth-oculto">
+            <div id="pantallaIngreso">
                 <h3>Ingresar a mi cuenta</h3>
                 <form id="formularioLogin">
                     <label for="correo">Correo electrónico</label>
@@ -538,6 +538,7 @@ h2 {
                     <button type="submit">Iniciar sesión</button>
                 </form>
                 <p class="enlace-auth"><a href="#" id="mostrarRecuperacion">Olvidé mi contraseña</a></p>
+                <p class="enlace-auth"><a href="#" id="irCrearCuentaLogin">¿No tienes cuenta? Crear cuenta</a></p>
                 <p class="enlace-auth"><a href="#" class="volverPrincipal">Volver</a></p>
             </div>
 
@@ -899,6 +900,7 @@ function abrirAplicacion(cuenta){
 }
 document.getElementById("irIngresar").addEventListener("click",()=>mostrarPantallaAuth("ingreso"));
 document.getElementById("irCrearCuenta").addEventListener("click",()=>mostrarPantallaAuth("registro"));
+document.getElementById("irCrearCuentaLogin").addEventListener("click",event=>{event.preventDefault();mostrarPantallaAuth("registro");});
 document.querySelectorAll(".volverPrincipal").forEach(link=>link.addEventListener("click",event=>{event.preventDefault();mostrarPantallaAuth("principal");}));
 document.getElementById("mostrarRecuperacion").addEventListener("click",event=>{event.preventDefault();mostrarPantallaAuth("recuperacion");});
 document.getElementById("volverIngreso").addEventListener("click",event=>{event.preventDefault();mostrarPantallaAuth("ingreso");});
@@ -1091,7 +1093,7 @@ document.getElementById("fechaTarea").value = fechaISO(fechaActual);
 
 document.getElementById("cerrarSesion").addEventListener("click",()=>{
     aplicacion.style.display="none"; login.style.display="flex";
-    document.getElementById("formularioLogin").reset(); mostrarPantallaAuth("principal");
+    document.getElementById("formularioLogin").reset(); mostrarPantallaAuth("ingreso");
 });
 renderizarCalendario(); renderizarTareas();
 
